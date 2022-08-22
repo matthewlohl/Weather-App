@@ -1,6 +1,11 @@
-const app = require('./app.js')
+//const { text } = require('stream/consumers')
+const app = require('./app')
 
 console.log('app.js is linked')
+
+
+
+
 function fetchweather (city) {
     let apiKey = "574be141045fd202821891433c4208b7"
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
@@ -12,6 +17,7 @@ function fetchweather (city) {
         document.querySelector('#min_temperature').innerText = data.main.temp_min;
         document.querySelector('#humidity').innerText = data.main.humidity
         document.querySelector('#description').innerText = data.weather[0].description
+        document.querySelector('#weather_icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`
     })  
 }
 
