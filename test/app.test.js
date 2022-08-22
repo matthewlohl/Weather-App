@@ -12,13 +12,12 @@ jest.mock('../static/js/app.js')
 
 describe ('App.JS.',() => {
     describe ('Able to update HTML from API', () => {
-        
+        document.documentElement.innerHTML = html.toString();
         it ('City name updated', () => {
             const city_name = 'London';
             fetchweather(city_name);
-            document.documentElement.innerHTML = html.toString();
             const city = document.querySelector('#city');
-            expect(city.textContent).toBe('Birmingham')
+            expect(city.textContent).toBe('London')
         })
     })
 

@@ -19,8 +19,8 @@ describe('index.html', () => {
             searchBtn = document.querySelector('button')
         })
         
-        test('search Div contains 2 childs', () => {
-            expect(searchDiv).toBe(2);
+        test('search Div contains 3 childs: label, input, btn', () => {
+            expect(searchDiv).toBe(3);
         })
 
         test('input box exists', () => {
