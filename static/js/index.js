@@ -1,3 +1,5 @@
-let weather = {"apiKey": "574be141045fd202821891433c4208b7"}
+const app = require('./app')
 
+app.fetchweather("London")
+//app.displayweather("London")
 console.log('bundle.js is linked')

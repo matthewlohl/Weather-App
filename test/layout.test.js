@@ -1,27 +1,38 @@
-// const { exportAllDeclaration } = require('@babel/types')
+/**
+ * @jest-environment-jsdom
+ */
+//const { exportAllDeclaration } = require('@babel/types')
 const fs = require('fs')
 const path = require('path')
-// const { describe } = require('yargs')
+const { describe } = require('yargs')
 
-const html = fs.readFileSync(path.resolve(__dirname, '..index.html'),'utf-8')
+const html = fs.readFileSync(path.resolve(__dirname, '../index.html'),'utf-8')
 
 describe('index.html', () => {
-    BeforeEach(() => {
-        document.documentElement.innerHTML = html.toString()
-    })
+
+        // it('it has a h2', () => {
+        //     //document.documentElement.innerHTML = html.toString();
+        //     const location = document.querySelector('h2')
+        //     expect(location.textContent).toContain('Weather in Birmingham')
+        // })
+        let searchDiv;
+        let searchBtn;
 
     describe('form', () => {
-        let search;
-        let weather;
+        beforeEach(() => {
+            document.documentElement.innerHTML = html.toString()
+        })
 
-        BeforeEach(() => {
+    
+
+        beforeEach(() => {
             searchDiv = document.getElementById('search')
             textInput = document.querySelector('[type="text"]')
             searchBtn = documennt.querySelector('button')
         })
 
-        test('element exists', () => {
-            exportAllDeclaration(searchDiv).toBeTruthy()
+        test('search Div exists', () => {
+            expect(searchDiv).toBeTruthy()
         })
     })
 })
