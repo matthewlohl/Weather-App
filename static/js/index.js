@@ -1,5 +1,4 @@
 const app = require('./app')
 
-app.fetchweather("London")
-//app.displayweather("London")
+app.fetchweather("Liverpool")
 console.log('bundle.js is linked')

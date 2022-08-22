@@ -1,10 +1,6 @@
 const app = require('./app.js')
-//const fetch = require('node-fetch');
+
 console.log('app.js is linked')
-
-let url = "https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=574be141045fd202821891433c4208b7"
-let weather = {"apiKey": "574be141045fd202821891433c4208b7"}
-
 function fetchweather (city) {
     let apiKey = "574be141045fd202821891433c4208b7"
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
