@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./bundle.js"></script>
     <title>Weather API</title>
 </head>
 <body>
     <main>
         <div class="card">
-            <div class="search">
+            <div id="search">
                 <input type="text" class="search-bar">
-                <button>Search</button>
+                <button type="submit">Search</button>
             </div>
-            <div class="weather">
+            <div id="weather">
                 <h2>Weather in Birmingham</h2>
                 <p class="temperature">23 °C</p>
                 <p class="humidity">Humidity: 70%</p>
@@ -23,6 +24,6 @@
         </div>
     </main>
 
-    <script src="./index.js"></script>
+    
 </body>
 </html>
