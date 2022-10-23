@@ -5,7 +5,14 @@
         <Search @sendDataToParent="fetchData" />
       </div>
       <h1>Weather App</h1>
-      <h3>{{this.weatherData}}</h3>
+      <h2>{{this.weatherData.name}}</h2>
+      <!-- <h2>{{this.weatherLocation}}</h2> -->
+      <p>{{this.weatherMain.temp}}  °C</p>
+      <p>{{this.weatherMain.temp_max}}  °C</p>
+      <p>{{this.weatherMain.temp_min}}  °C</p>
+      <p>{{this.weatherMain.humidity}}%</p>
+      <p>{{this.weatherDesc}}</p>
+      <img v-bind:src="'https://openweathermap.org/img/wn/'+weatherIcon+'.png'" />
     </section>
   </main>
 </template>
@@ -30,16 +37,25 @@ export default {
   name: 'Weather-app',
   data(){
     return{
-      weatherData: []
+      weatherData:[],
+      weatherMain:[],
+      weatherDesc:[],
+      weatherIcon:[],
     }
   },
   methods:{
     reset(){
         this.weatherData=[]  
+        this.weatherMain=[]
+        this.weatherDesc=[]
+        this.weatherIcon=[]
     },
     fetchData(e){
       this.reset()
-      this.weatherData.push(e)
+      this.weatherData = e
+      this.weatherMain = e.main
+      this.weatherDesc = e.weather[0].description
+      this.weatherIcon.push(e.weather[0].icon)
     }
   },
   components:{
