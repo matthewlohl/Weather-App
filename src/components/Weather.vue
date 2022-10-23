@@ -2,9 +2,10 @@
   <main>
     <section>
       <div>
-        <Search />
+        <Search @sendDataToParent="fetchData" />
       </div>
       <h1>Weather App</h1>
+      <h3>{{this.weatherData}}</h3>
     </section>
   </main>
 </template>
@@ -27,6 +28,20 @@
 import Search from'./Search'
 export default {
   name: 'Weather-app',
+  data(){
+    return{
+      weatherData: []
+    }
+  },
+  methods:{
+    reset(){
+        this.weatherData=[]  
+    },
+    fetchData(e){
+      this.reset()
+      this.weatherData.push(e)
+    }
+  },
   components:{
     Search
   }
