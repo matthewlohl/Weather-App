@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+#API key
+src/components/__key__.js
 
 # local env files
 .env.local

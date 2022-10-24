@@ -29,6 +29,7 @@
   
   <script>
   import axios from 'axios'
+  import apiKey from './__key__'
   export default {
     name: 'search-location',
     data(){
@@ -48,7 +49,7 @@
             this.fetchData(this.city)
         },
         async fetchData (city){
-            const apiKey = "574be141045fd202821891433c4208b7"
+  
             await axios
                 .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
                 .then(response => (this.weatherData = response.data))
