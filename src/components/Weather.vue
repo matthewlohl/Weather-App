@@ -1,18 +1,23 @@
 <template>
   <main>
-    <section>
+    <section :style="image">
+      <!-- <div class="bgImg" :style="{'background-image':'url(https://vuejs.org/images/logo.png)'}"></div> -->
+      <!-- <img class="bgImg" src="../assets/cloudy.png"/> -->
       <div>
         <Search @sendDataToParent="fetchData" />
       </div>
-      <h1>Weather App</h1>
       <h2>{{this.weatherData.name}}</h2>
+      <h2>{{this.weatherMain.temp}}  °C</h2>
+      <div class="imgCenter">
+        <img v-bind:src="'https://openweathermap.org/img/wn/'+weatherIcon+'.png'" />
+      </div>
+      <h6 class="center">{{this.weatherDesc}}</h6>
+      <p class="center">Humidity: {{this.weatherMain.humidity}}%</p>
       <!-- <h2>{{this.weatherLocation}}</h2> -->
-      <p>{{this.weatherMain.temp}}  °C</p>
-      <p>{{this.weatherMain.temp_max}}  °C</p>
-      <p>{{this.weatherMain.temp_min}}  °C</p>
-      <p>{{this.weatherMain.humidity}}%</p>
-      <p>{{this.weatherDesc}}</p>
-      <img v-bind:src="'https://openweathermap.org/img/wn/'+weatherIcon+'.png'" />
+      <div class="highLow">
+        <p>H: {{this.weatherMain.temp_max}}  °C</p>
+        <p>L: {{this.weatherMain.temp_min}}  °C</p>
+      </div>
     </section>
   </main>
 </template>
@@ -27,7 +32,33 @@
   section{
 
     width: 50%;
-    border: 3px solid blue;
+    border: 3px solid gray;
+    background-size: cover;
+    color: white;
+  }
+
+  .bgImg{
+    position: relative;
+    object-fit:cover;
+    max-width: fit-content
+  }
+
+  h2, .center{
+    text-align: center;
+  }
+  .highLow, .imgCenter{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  h6{
+    line-height: 1rem;
+    margin: 1rem;
+  }
+
+  p{
+    font-size: 1.3rem;
   }
 </style>
 
@@ -41,6 +72,7 @@ export default {
       weatherMain:[],
       weatherDesc:[],
       weatherIcon:[],
+      image: { backgroundImage: "url(https://wallpapercave.com/wp/wp5594572.png)" }
     }
   },
   methods:{
@@ -55,7 +87,27 @@ export default {
       this.weatherData = e
       this.weatherMain = e.main
       this.weatherDesc = e.weather[0].description
-      this.weatherIcon.push(e.weather[0].icon)
+      this.weatherIcon = e.weather[0].icon
+      this.loadbg()
+    },
+    loadbg(){
+      if(this.weatherDesc === 'mist'){
+        this.image = { backgroundImage: "url(https://wallpapercave.com/wp/wp9040181.jpg)" }
+      } else if (this.weatherDesc === 'clear sky') {
+        this.image = { backgroundImage: "url(https://wallpapercave.com/wp/wp5594572.png)" }
+      } 
+        else if (this.weatherDesc === 'few clouds') {
+        this.image = { backgroundImage: "url(https://wallpapercave.com/wp/wp5613559.jpg)" }
+      } 
+      else if (this.weatherDesc === 'broken clouds') {
+        this.image = { backgroundImage: "url(https://wallpapercave.com/wp/wp9048573.jpg)" }
+      } 
+      
+      // https://wallpapercave.com/wp/wp9322371.jpg
+      console.log("I'm running")
+      
+      console.log(this.weatherDesc)
+      
     }
   },
   components:{
